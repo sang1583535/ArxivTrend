@@ -7,6 +7,18 @@ class AnalyzeTopicRequest(BaseModel):
     query: str = Field(..., description="The search query string.")
     max_results: int = Field(100, ge=1, le=500, description="Maximum number of results to return.")
     granularity: Literal["year"] = Field("year", description="Trend granularity. MVP supports only 'year'.")
+    start_year: Optional[int] = Field(
+        None,
+        ge=1900,
+        le=2100,
+        description="Optional inclusive start year filter. Defaults to (effective end year - 5).",
+    )
+    end_year: Optional[int] = Field(
+        None,
+        ge=1900,
+        le=2100,
+        description="Optional inclusive end year filter. Defaults to the current year.",
+    )
 
 
 class AnalyzeSummary(BaseModel):

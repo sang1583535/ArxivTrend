@@ -1,6 +1,28 @@
 from collections import Counter, defaultdict
 
 
+def limit_papers_by_year_range(
+    papers: list[dict],
+    start_year: int | None = None,
+    end_year: int | None = None,
+) -> list[dict]:
+    if start_year is None and end_year is None:
+        return papers
+
+    filtered: list[dict] = []
+    for paper in papers:
+        year = paper.get("published_year")
+        if not isinstance(year, int) or year <= 0:
+            continue
+        if start_year is not None and year < start_year:
+            continue
+        if end_year is not None and year > end_year:
+            continue
+        filtered.append(paper)
+
+    return filtered
+
+
 def compute_topic_trend(papers: list[dict], granularity: str = "year") -> list[dict]:
     if granularity != "year":
         raise ValueError("Unsupported granularity. Only 'year' is supported.")
