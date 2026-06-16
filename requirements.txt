@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+streamlit
+requests
+pydantic
+pymupdf
+pytest
+feedparser
+python-dotenv
+keybert
+sentence-transformers
