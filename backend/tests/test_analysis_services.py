@@ -1,4 +1,9 @@
-from backend.services.stats_service import compute_category_distribution, compute_summary, compute_topic_trend
+from backend.services.stats_service import (
+    compute_category_distribution,
+    compute_summary,
+    compute_topic_trend,
+    limit_papers_by_year_range,
+)
 
 
 def _sample_papers() -> list[dict]:
@@ -64,3 +69,9 @@ def test_summary_calculation() -> None:
 
     assert summary["total_papers"] == 3
     assert summary["year_range"] == "2024-2025"
+
+
+def test_limit_papers_by_year_range() -> None:
+    filtered = limit_papers_by_year_range(_sample_papers(), start_year=2025, end_year=2025)
+    assert len(filtered) == 2
+    assert all(paper["published_year"] == 2025 for paper in filtered)
