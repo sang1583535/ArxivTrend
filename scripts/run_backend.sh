@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Run the backend server using uvicorn
+uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
