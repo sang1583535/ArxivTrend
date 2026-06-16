@@ -2,6 +2,8 @@ fastapi
 uvicorn
 streamlit
 requests
+pandas
+plotly
 pydantic
 pymupdf
 pytest
